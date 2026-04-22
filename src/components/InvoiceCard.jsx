@@ -1,3 +1,7 @@
+import StatusBadge from "./StatusBadge";
+import "./index.css";
+
+
 export default function InvoiceCard({ invoice, onEdit, onDelete, onMarkPaid }) {
     return (
         <div className="invoice-card">
@@ -5,7 +9,7 @@ export default function InvoiceCard({ invoice, onEdit, onDelete, onMarkPaid }) {
                 <h3>{invoice.clientName}</h3>
                 <p>{invoice.clientEmail}</p>
                 <p>${invoice.amount.toFixed(2)}</p>
-                <p className={`status ${invoice.status}`}>{invoice.status}</p>
+                <StatusBadge status={invoice.status} />
             </div>
 
             <div className="card-actions">

@@ -102,6 +102,42 @@ select:focus {
   gap: 4px;
 }
 
+/* StatusBadge.jsx */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Pending */
+.status.pending {
+  background: #fff4e5;
+  color: #ff8f00;
+}
+
+/* Paid */
+.status.paid {
+  background: #e6fffa;
+  color: #33d69f;
+}
+
+/* Draft */
+.status.draft {
+  background: #f4f4f4;
+  color: #888;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
 @media (max-width: 600px) {
   /* Home */
   .invoice-card {
