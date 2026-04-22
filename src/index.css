@@ -39,3 +39,73 @@
   border: none;
   cursor: pointer;
 }
+
+/* InvoiceForm.jsx */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: #555;
+}
+
+.input:focus,
+select:focus {
+  outline: none;
+  border-color: #7c5dfa;
+}
+
+.error {
+  border-color: red;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  /* Home */
+  .invoice-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .form {
+    width: 90%;
+  }
+}
+
+
