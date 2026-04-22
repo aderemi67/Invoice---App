@@ -1,18 +1,8 @@
 import "./index.css";
+import Home from "./Pages/Home";
 
 function App() {
-  return (
-    <div className="app">
-      <header className="header">
-        <h1>Invoice App</h1>
-        <button className="btn">New Invoice</button>
-      </header>
-
-      <main className="container">
-        <p>No invoices yet</p>
-      </main>
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
