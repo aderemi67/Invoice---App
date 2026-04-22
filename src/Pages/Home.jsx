@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import InvoiceForm from "../features/invoices/InvoiceForm";
+import InvoiceCard from "../components/InvoiceCard";
 import { use } from "react";
 
 export default function Home() {
@@ -48,6 +49,14 @@ export default function Home() {
             setEditingInvoice(invoice);
             setShowForm(true);
         }
+
+        // Mark as Paid Logic 
+        function handleMarkPaid(id){
+            setInvoices((prev) => 
+            prev.map((inv) =>
+            inv.id === id ? { ...inv, status: "paid" } : inv)
+        );
+        }
     
         return (
             <div className="home">
@@ -70,26 +79,17 @@ export default function Home() {
                 {invoices.length === 0 ? (
                     <p>No invoices found</p>
                 ) : (
-                    <div className="invoice-list">
-                        {invoices.map((inv) => (
-                            <div key={inv.id}
-                            className="invoice-card">
-                                <h3>{inv.clientName}</h3>
-                                <p>{inv.clientEmail}</p>
-                                <p>${inv.amount}</p>
-                                <p>Status:{inv.status}</p>
-
-                                <div className="card-actions">
-                                    <button onClick={() => handleEdit(inv)}>
-                                        Edit
-                                    </button>
-                                    <button onClick={() => handleDelete(inv.id)}>
-                                        Delete
-                                    </button>
-                                </div>
-                                </div>
-                        ))}
-            </div>
+                 <div className="invoice-list">
+                    {invoices.map((inv) => (
+                        <InvoiceCard
+                        key={inv.id}
+                        invoice={inv}
+                        onEdit={handleEdit}
+                        onDelete={handleDelete}
+                        onMarkPaid={handleMarkPaid}
+                        />
+                    ))}
+                    </div>
             )}
 
             {/* Form Modal */}
