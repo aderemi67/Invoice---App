@@ -16,7 +16,7 @@ export default function InvoiceCard({ invoice, onEdit, onDelete, onMarkPaid }) {
                 <button onClick={() => onEdit(invoice)}>Edit</button>
                 <button onClick={() => onDelete(invoice.id)}>Delete</button>
 
-                {invoice.status !== "paid" && (
+                {invoice.status !== "paid" && invoice.status !== "draft" && (
                     <button onClick={() => onMarkPaid(invoice.id)}>
                         Mark as Paid
                     </button>

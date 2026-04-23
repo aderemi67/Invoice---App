@@ -7,6 +7,7 @@ export default function Home() {
     const [invoices, setInvoices] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [editingInvoice, setEditingInvoice] = useState(null);
+    const [filter, setFilter] = useState("all");
 
 
     // Load from localStorage
@@ -57,12 +58,26 @@ export default function Home() {
             inv.id === id ? { ...inv, status: "paid" } : inv)
         );
         }
+
+        // Filter logic
+        const filteredInvoices = filter === "all" ? invoices 
+        : invoices.filter((inv) => inv.status === filter);
     
         return (
             <div className="home">
                 {/* Header */}
                 <div className="home-header">
                     <h1>Invoices</h1>
+                    <div className="filter">
+                        <select
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}>
+                            <option value="all">All</option>
+                            <option value="pending">Pending</option>
+                            <option value="paid">Paid</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </div>
 
                     <button 
                     className="btn-primary"
@@ -80,7 +95,7 @@ export default function Home() {
                     <p>No invoices found</p>
                 ) : (
                  <div className="invoice-list">
-                    {invoices.map((inv) => (
+                    {filteredInvoices.map((inv) => (
                         <InvoiceCard
                         key={inv.id}
                         invoice={inv}

@@ -51,6 +51,7 @@ export default function InvoiceForm({ onClose, onSave, existingInvoice }) {
         }
         const invoiceData = {
             ...form,
+            status: form.status || "pending",
             amount: Number(form.amount),
             id:existingInvoice?.id || Date.now(),
             createdAt: existingInvoice?.createdAt || new Date().toISOString(),
@@ -58,6 +59,19 @@ export default function InvoiceForm({ onClose, onSave, existingInvoice }) {
         };
 
         onSave(invoiceData);
+        onClose();
+    }
+
+    //Draft handler
+    function handleSaveDraft() {
+        const draftData = {
+            ...form,
+            status: "draft",
+            id: existingInvoice?.id || Date.now(),
+            createdAt: 
+            existingInvoice?.createdAt || new Date().toISOString(),
+        }
+        onSave(draftData);
         onClose();
     }
 
@@ -147,14 +161,23 @@ export default function InvoiceForm({ onClose, onSave, existingInvoice }) {
                     <button
                     type="button"
                     onClick={onClose}
+                    className="btn-secondary"
                     >
                         Cancel
                     </button>
-                
 
-                <button type="submit" className="btn btn-primary">
+                    <button
+                    type="button"
+                    onClick={handleSaveDraft}
+                    className="btn-secondary"
+                    >
+                        Save as Draft
+                    </button>
+
+                <button type="submit" className="btn-primary">
                     {existingInvoice ? "Update" : "Save"}
                 </button>
+
                 </div>
             </form>
         </div>

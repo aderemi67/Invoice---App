@@ -40,6 +40,13 @@
   cursor: pointer;
 }
 
+.filter select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
 /* InvoiceForm.jsx */
 .modal-overlay {
   position: fixed;
