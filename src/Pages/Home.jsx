@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import InvoiceForm from "../features/invoices/InvoiceForm";
 import InvoiceCard from "../components/InvoiceCard";
+
 import { use } from "react";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
     const [showForm, setShowForm] = useState(false);
     const [editingInvoice, setEditingInvoice] = useState(null);
     const [filter, setFilter] = useState("all");
+    const [theme, setTheme] = useState("light");
 
 
     // Load from localStorage
@@ -20,6 +22,23 @@ export default function Home() {
     useEffect(() => {
         localStorage.setItem("invoices", JSON.stringify(invoices));
     }, [invoices]);
+
+    //Load saved theme
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) setTheme(savedTheme);
+    }, []);
+    
+    // Apply theme and save
+    useEffect(() => {
+        document.body.className = theme;
+        localStorage.setItem("theme", theme);
+    }, []);
+
+    // Toggle function
+    function toggleTheme() {
+        setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    }
 
     // Add or Update invoice
         function handlesave(invoice) {
@@ -78,6 +97,10 @@ export default function Home() {
                             <option value="draft">Draft</option>
                         </select>
                     </div>
+
+                    <button onClick={toggleTheme} className="btn-secondary">
+                     {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+                    </button>
 
                     <button 
                     className="btn-primary"

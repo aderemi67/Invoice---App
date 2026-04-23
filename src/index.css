@@ -47,6 +47,48 @@
   margin-right: 10px;
 }
 
+/* Theme Toggle */
+/* Light (default already exist) */
+body.dark {
+  background: #141625;
+  color: #ffffff;
+}
+/* Cards */
+body.dark .invoice-card {
+  background: #1e2139;
+  color: white;
+}
+/*Form */
+body.dark .form {
+  background: #1e2139;
+  color: white;
+}
+/* Input*/
+body.dark input,
+body.darl select {
+  background: #252945;
+  color: white;
+  border: 1px solid #444;
+}
+
+/* Buttons */
+body.dark .btn-secondary {
+  background: #252945;
+  color: white;
+}
+
+/* status adjustment */
+body.dark .status.paid {
+  background: rgba(51, 214, 159, 0.2);
+}
+body.dark .status.pend {
+  background: rgba(255, 143, 0, 0.2);
+}
+body.dark .status.draft {
+  background: rgba(255,255,255,0.1);
+}
+
+
 /* InvoiceForm.jsx */
 .modal-overlay {
   position: fixed;
